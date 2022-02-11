@@ -1,10 +1,11 @@
 import React from 'react'
+import EditForm from './EditForm'
 
 const EditCRUD = () => {
   return (
-    <div>
-        <h2>Edit CRUD</h2>
-        <h1>facu</h1>
+    <div className='pt-5'>
+        <h2 className='text-center'>Edit CRUD</h2>
+        <EditForm/>
     </div>
   )
 }

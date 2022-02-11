@@ -1,0 +1,10 @@
+.formWitdh{
+    margin: 2rem;
+}
+
+@media (min-width: 768px) {
+  .formWitdh {
+    width: 70%;
+    margin: auto;
+  }
+}
