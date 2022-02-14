@@ -2,14 +2,19 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import CreateStudentRow from "./CreateStudentRow";
 
-const CreateStudent = ({db}) => {
+const CreateStudent = ({ db, setDb }) => {
+  const deleteData = (id) =>{
+   const newArray = db.filter((el)=> el.id !== id)
+   setDb(newArray);
+  }
+
   return (
     <div>
       <h3 className="text-center py-2">Students</h3>
 
       <Table striped bordered hover size="sm">
         <thead>
-          <tr>
+          <tr className="text-center">
             <th>ID</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -19,7 +24,20 @@ const CreateStudent = ({db}) => {
           </tr>
         </thead>
         <tbody>
-          {db.map((student)=> <CreateStudentRow key= {student.id} student={student}/>)}
+          {db.length === 0 ? (
+            <tr className="text-center">
+              <td>---</td>
+              <td>---</td>
+              <td>---</td>
+              <td>---</td>
+              <td>---</td>
+              <td>---</td>
+            </tr>
+          ) : (
+            db.map((student) => (
+              <CreateStudentRow key={student.id} student={student} deleteData={deleteData} />
+            ))
+          )}
         </tbody>
       </Table>
     </div>

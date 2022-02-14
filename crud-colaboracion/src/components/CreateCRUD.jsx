@@ -10,7 +10,7 @@ const CreateCRUD = ({ setModEdit }) => {
       <h2 className="text-center">Create CRUD</h2>
       <CreateForm db={db} setDb={setDb}/>
       <hr />
-      <CreateStudent db={db} setModEdit={setModEdit} />
+      <CreateStudent db={db} setDb={setDb} setModEdit={setModEdit} />
     </div>
   );
 };

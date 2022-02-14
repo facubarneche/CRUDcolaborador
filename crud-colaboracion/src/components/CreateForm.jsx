@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import "./CreateForm.css";
 
+const dbDefault = {
+  id: null,
+  name: "",
+  lastName: "",
+  email: "",
+  age: ""
+};
+
 const CreateForm = ({ db, setDb }) => {
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState(dbDefault);
   let [counter, setCounter] = useState(1);
 
   const createData = () => {
@@ -15,7 +23,12 @@ const CreateForm = ({ db, setDb }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createData();
+    handleReset();
   };
+
+  const handleReset = () =>{
+    setForm(dbDefault);
+  }
 
   const handleChange = (e) => {
     setForm({
@@ -23,6 +36,10 @@ const CreateForm = ({ db, setDb }) => {
       [e.target.name]: e.target.value,
     });
   };
+
+ 
+  
+
 
   return (
     <Form className="formWitdh" onSubmit={handleSubmit}>
@@ -32,6 +49,7 @@ const CreateForm = ({ db, setDb }) => {
           type="text"
           placeholder="Enter name"
           name="name"
+          value={form.name}
           onChange={handleChange}
         />
       </Form.Group>
@@ -42,6 +60,7 @@ const CreateForm = ({ db, setDb }) => {
           type="text"
           placeholder="Enter last name"
           name="lastName"
+          value={form.lastName}
           onChange={handleChange}
         />
       </Form.Group>
@@ -52,6 +71,7 @@ const CreateForm = ({ db, setDb }) => {
           type="email"
           placeholder="Enter email"
           name="email"
+          value={form.email}
           onChange={handleChange}
         />
         <Form.Text className="text-muted">
@@ -65,6 +85,7 @@ const CreateForm = ({ db, setDb }) => {
           type="number"
           placeholder="Age"
           name="age"
+          value={form.age}
           onChange={handleChange}
         />
       </Form.Group>
@@ -75,7 +96,7 @@ const CreateForm = ({ db, setDb }) => {
         value="Create"
         variant="outline-primary"
       />
-      <Button as="input" type="reset" value="Reset" variant="outline-primary" />
+      <Button as="input" type="reset" value="Reset" variant="outline-primary" onClick={handleReset} />
     </Form>
   );
 };
