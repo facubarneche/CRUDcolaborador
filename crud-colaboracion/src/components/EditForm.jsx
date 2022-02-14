@@ -10,6 +10,11 @@ const EditForm = () => {
         <Form.Control type="text" placeholder="Enter name" />
       </Form.Group>
 
+      <Form.Group className="mb-3" controlId="formBasicLastName">
+        <Form.Label>Last Name</Form.Label>
+        <Form.Control type="text" placeholder="Enter last name" />
+      </Form.Group>
+
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" />
@@ -18,23 +23,13 @@ const EditForm = () => {
         </Form.Text>
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
+      <Form.Group className="mb-3" controlId="formBasicAge">
+        <Form.Label>Age</Form.Label>
+        <Form.Control type="number" placeholder="Age" />
       </Form.Group>
 
-      <Button
-        as="input"
-        type="submit"
-        value="Edit"
-        variant="outline-primary"
-      />
-      <Button
-        as="input"
-        type="reset"
-        value="Reset"
-        variant="outline-primary"
-      />
+      <Button as="input" type="submit" value="Edit" variant="outline-primary" />
+      <Button as="input" type="reset" value="Reset" variant="outline-primary" />
     </Form>
   );
 };
