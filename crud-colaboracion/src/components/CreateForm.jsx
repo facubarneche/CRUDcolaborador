@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import "./CreateForm.css";
 
@@ -7,28 +7,41 @@ const dbDefault = {
   name: "",
   lastName: "",
   email: "",
-  age: ""
+  age: "",
 };
 
-const CreateForm = ({ db, setDb }) => {
+const CreateForm = ({ db, setDb, setModEdit, modEdit }) => {
   const [form, setForm] = useState(dbDefault);
   let [counter, setCounter] = useState(1);
 
   const createData = () => {
-    form.id = counter;
-    setDb([...db, form]);
-    setCounter(counter + 1);
-  };
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createData();
-    handleReset();
+    if (!form.name || !form.age || !form.lastName || !form.email) {
+      alert("El formulario no esta completo");
+    } else {
+      form.id = counter;
+      setDb([...db, form]);
+      setCounter(counter + 1);
+      handleReset();
+    }
   };
 
-  const handleReset = () =>{
+  const editData = () => {
+    setModEdit(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (modEdit) {
+      editData();
+    } else {
+      createData();
+    }
+  };
+
+  const handleReset = () => {
     setForm(dbDefault);
-  }
+  };
 
   const handleChange = (e) => {
     setForm({
@@ -37,9 +50,9 @@ const CreateForm = ({ db, setDb }) => {
     });
   };
 
- 
-  
-
+  useEffect(() => {
+    console.log(modEdit);
+  }, [modEdit]);
 
   return (
     <Form className="formWitdh" onSubmit={handleSubmit}>
@@ -90,13 +103,28 @@ const CreateForm = ({ db, setDb }) => {
         />
       </Form.Group>
 
+      {modEdit ? (
+        <Button
+          as="input"
+          type="submit"
+          value="Edit"
+          variant="outline-primary"
+        />
+      ) : (
+        <Button
+          as="input"
+          type="submit"
+          value="Create"
+          variant="outline-primary"
+        />
+      )}
       <Button
         as="input"
-        type="submit"
-        value="Create"
+        type="reset"
+        value="Reset"
         variant="outline-primary"
+        onClick={handleReset}
       />
-      <Button as="input" type="reset" value="Reset" variant="outline-primary" onClick={handleReset} />
     </Form>
   );
 };

@@ -2,11 +2,11 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import CreateStudentRow from "./CreateStudentRow";
 
-const CreateStudent = ({ db, setDb }) => {
-  const deleteData = (id) =>{
-   const newArray = db.filter((el)=> el.id !== id)
-   setDb(newArray);
-  }
+const CreateStudent = ({ db, setDb, setModEdit }) => {
+  const deleteData = (id) => {
+    const newArray = db.filter((el) => el.id !== id);
+    setDb(newArray);
+  };
 
   return (
     <div>
@@ -35,7 +35,12 @@ const CreateStudent = ({ db, setDb }) => {
             </tr>
           ) : (
             db.map((student) => (
-              <CreateStudentRow key={student.id} student={student} deleteData={deleteData} />
+              <CreateStudentRow
+                key={student.id}
+                student={student}
+                deleteData={deleteData}
+                setModEdit={setModEdit}
+              />
             ))
           )}
         </tbody>
