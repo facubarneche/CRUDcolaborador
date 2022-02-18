@@ -1,11 +1,12 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-const CreateStudentRow = ({ setModEdit, student, deleteData }) => {
+const CreateStudentRow = ({ setModEdit, student, deleteData, setDataToEdit }) => {
   const { id, name, lastName, email, age } = student;
 
   const handleEdit = () => {
     setModEdit(true);
+    setDataToEdit(student)
   };
 
   return (

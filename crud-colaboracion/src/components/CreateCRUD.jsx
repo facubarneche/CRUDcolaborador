@@ -4,6 +4,7 @@ import CreateStudent from "./CreateStudent";
 
 const CreateCRUD = ({ setModEdit, modEdit }) => {
   const [db, setDb] = useState([]);
+  const [dataToEdit, setDataToEdit] = useState(null);
 
   return (
     <div className="pt-5">
@@ -13,9 +14,15 @@ const CreateCRUD = ({ setModEdit, modEdit }) => {
         setDb={setDb}
         setModEdit={setModEdit}
         modEdit={modEdit}
+        dataToEdit={dataToEdit}
       />
       <hr />
-      <CreateStudent db={db} setDb={setDb} setModEdit={setModEdit} />
+      <CreateStudent
+        db={db}
+        setDb={setDb}
+        setModEdit={setModEdit}
+        setDataToEdit={setDataToEdit}
+      />
     </div>
   );
 };

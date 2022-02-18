@@ -10,7 +10,7 @@ const dbDefault = {
   age: "",
 };
 
-const CreateForm = ({ db, setDb, setModEdit, modEdit }) => {
+const CreateForm = ({ db, setDb, setModEdit, modEdit, dataToEdit }) => {
   const [form, setForm] = useState(dbDefault);
   let [counter, setCounter] = useState(1);
 
@@ -26,17 +26,24 @@ const CreateForm = ({ db, setDb, setModEdit, modEdit }) => {
   };
 
   const editData = () => {
-    setModEdit(false);
+    setForm(dataToEdit)
+
   };
+
+  const edit = () =>{
+      // const newArray = db.map((el)=> el.id == form.id ? el : form)
+      // setDb(newArray);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (modEdit) {
-      editData();
+      edit();
     } else {
       createData();
     }
+
   };
 
   const handleReset = () => {
@@ -51,7 +58,9 @@ const CreateForm = ({ db, setDb, setModEdit, modEdit }) => {
   };
 
   useEffect(() => {
-    console.log(modEdit);
+   if (modEdit) {
+      editData();
+    }
   }, [modEdit]);
 
   return (
