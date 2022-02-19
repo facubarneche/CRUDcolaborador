@@ -20,6 +20,7 @@ const CreateCRUD = ({ setModEdit, modEdit }) => {
       <CreateStudent
         db={db}
         setDb={setDb}
+        modEdit={modEdit}
         setModEdit={setModEdit}
         setDataToEdit={setDataToEdit}
       />

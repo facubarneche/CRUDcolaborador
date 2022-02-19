@@ -26,15 +26,19 @@ const CreateForm = ({ db, setDb, setModEdit, modEdit, dataToEdit }) => {
   };
 
   const editData = () => {
-    setForm(dataToEdit)
-
+    setForm(dataToEdit);
   };
 
-  const edit = () =>{
-      // const newArray = db.map((el)=> el.id == form.id ? el : form)
-      // setDb(newArray);
-  }
-
+  const edit = () => {
+    if (!form.name || !form.age || !form.lastName || !form.email) {
+      alert("El formulario no esta completo");
+    } else {
+    const newArray = db.map((el) => (el.id === form.id ? form : el));
+    setDb(newArray);
+    setModEdit(false);
+    handleReset();
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -43,7 +47,6 @@ const CreateForm = ({ db, setDb, setModEdit, modEdit, dataToEdit }) => {
     } else {
       createData();
     }
-
   };
 
   const handleReset = () => {
@@ -58,10 +61,10 @@ const CreateForm = ({ db, setDb, setModEdit, modEdit, dataToEdit }) => {
   };
 
   useEffect(() => {
-   if (modEdit) {
+    if (modEdit) {
       editData();
     }
-  }, [modEdit]);
+  }, [dataToEdit]);
 
   return (
     <Form className="formWitdh" onSubmit={handleSubmit}>

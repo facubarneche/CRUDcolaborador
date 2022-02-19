@@ -2,7 +2,7 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import CreateStudentRow from "./CreateStudentRow";
 
-const CreateStudent = ({ db, setDb, setModEdit, setDataToEdit }) => {
+const CreateStudent = ({ db, setDb, modEdit, setModEdit, setDataToEdit }) => {
   const deleteData = (id) => {
     const newArray = db.filter((el) => el.id !== id);
     setDb(newArray);
