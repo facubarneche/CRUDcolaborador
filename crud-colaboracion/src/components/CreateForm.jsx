@@ -50,7 +50,19 @@ const CreateForm = ({ db, setDb, setModEdit, modEdit, dataToEdit }) => {
   };
 
   const handleReset = () => {
-    setForm(dbDefault);
+    if(modEdit){
+     const currentID = form.id;
+     setForm({
+      id: currentID,
+      name: "",
+      lastName: "",
+      email: "",
+      age: "",
+     });
+     
+    }else{
+      setForm(dbDefault); 
+    }
   };
 
   const handleChange = (e) => {
